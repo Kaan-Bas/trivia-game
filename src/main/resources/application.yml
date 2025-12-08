@@ -1,7 +1,4 @@
 spring:
-  application:
-    name: trivia-game
-
   datasource:
     url: ${DB_URL}
     username: ${DB_USER}
