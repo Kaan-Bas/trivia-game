@@ -1,4 +1,4 @@
-const Home = () => {
+const HomePage = () => {
     const stored = localStorage.getItem('user');
     const user = stored ? JSON.parse(stored) as { username: string } : null;
     return (
@@ -11,5 +11,5 @@ const Home = () => {
             )}
         </div>
     );
-}
-export default Home;
+};
+export default HomePage;

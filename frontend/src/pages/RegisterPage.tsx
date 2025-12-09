@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../api';
 import type { UserResponse } from '../api';
 
-const Register = () => {
+const RegisterPage = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -107,4 +107,4 @@ const Register = () => {
         </main>
     );
 };
-export default Register
+export default RegisterPage
