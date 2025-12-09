@@ -1,0 +1,22 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-start: 7rem;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+
+    &--label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--button {
+      margin-block: 1rem;
+    }
+  }
+}

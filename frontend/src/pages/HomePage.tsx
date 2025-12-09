@@ -1,15 +1,18 @@
+import "../styles/home-page.scss"
+
 const HomePage = () => {
     const stored = localStorage.getItem('user');
     const user = stored ? JSON.parse(stored) as { username: string } : null;
+
     return (
-        <div>
-            <h1>Trivia Game (Home)</h1>
+        <main className={"home"}>
+            <h1>Trivia Game</h1>
             {user ? (
                 <p>Welcome, <strong>{user.username}</strong>!</p>
             ) : (
                 <p>You are not logged in.</p>
             )}
-        </div>
+        </main>
     );
 };
 export default HomePage;

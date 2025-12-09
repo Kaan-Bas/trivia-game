@@ -3,7 +3,7 @@ import '../styles/nav-component.scss';
 
 const NavComponent = () => {
     return (
-        <div className={"nav"}>
+        <main className={"nav"}>
             <div>
                 <h1>Trivia Game</h1>
             </div>
@@ -12,7 +12,7 @@ const NavComponent = () => {
                 <Link to="/login">Login</Link>
                 <Link to="/register">Register</Link>
             </div>
-        </div>
+        </main>
     );
 };
 export default NavComponent;

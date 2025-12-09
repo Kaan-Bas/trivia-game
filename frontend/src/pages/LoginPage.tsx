@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../api';
 import type { UserResponse } from '../api';
+import '../styles/login-page.scss';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -37,20 +38,15 @@ const LoginPage = () => {
     };
 
     return (
-        <main style={{ padding: '2rem' }}>
+        <main className={"login"}>
             <h1>Login</h1>
 
             <form
                 onSubmit={handleSubmit}
-                style={{
-                    maxWidth: 400,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.75rem',
-                }}
+                className={"login__form"}
             >
-                <label>
-                    Username
+                <label className={"login__form--label"}>
+                    <p>Username</p>
                     <input
                         type="text"
                         value={username}
@@ -59,8 +55,8 @@ const LoginPage = () => {
                     />
                 </label>
 
-                <label>
-                    Password
+                <label className={"login__form--label"}>
+                    <p>Password</p>
                     <input
                         type="password"
                         value={password}
@@ -69,18 +65,18 @@ const LoginPage = () => {
                     />
                 </label>
 
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className={"login__form--button"}>
                     {loading ? 'Logging in...' : 'Login'}
                 </button>
             </form>
 
             {error && (
-                <p style={{ color: 'red', marginTop: '1rem' }}>
+                <p>
                     {error}
                 </p>
             )}
 
-            <p style={{ marginTop: '1rem' }}>
+            <p>
                 Don&apos;t have an account? <Link to="/register">Register</Link>
             </p>
         </main>

@@ -3,6 +3,7 @@ import type { FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../api';
 import type { UserResponse } from '../api';
+import '../styles/register-page.scss';
 
 const RegisterPage = () => {
     const [username, setUsername] = useState('');
@@ -37,20 +38,15 @@ const RegisterPage = () => {
     };
 
     return (
-        <main style={{ padding: '2rem' }}>
+        <main className={"register"}>
             <h1>Register</h1>
 
             <form
                 onSubmit={handleSubmit}
-                style={{
-                    maxWidth: 400,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '0.75rem',
-                }}
+                className={"register__form"}
             >
-                <label>
-                    Username
+                <label className={"register_form--label"}>
+                    <p>Username</p>
                     <input
                         type="text"
                         value={username}
@@ -60,8 +56,8 @@ const RegisterPage = () => {
                     />
                 </label>
 
-                <label>
-                    Email
+                <label className={"register_form--label"}>
+                    <p>Email</p>
                     <input
                         type="email"
                         value={email}
@@ -70,8 +66,8 @@ const RegisterPage = () => {
                     />
                 </label>
 
-                <label>
-                    Password
+                <label className={"register_form--label"}>
+                    <p>Password</p>
                     <input
                         type="password"
                         value={password}
@@ -81,7 +77,7 @@ const RegisterPage = () => {
                     />
                 </label>
 
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className={"register__form--button"}>
                     {loading ? 'Registering...' : 'Register'}
                 </button>
             </form>
