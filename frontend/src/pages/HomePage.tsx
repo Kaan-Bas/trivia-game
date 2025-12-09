@@ -81,16 +81,16 @@ const HomePage = () => {
     return (
         <main className={"home"}>
             {user ? (
-                <p>Welcome, <strong>{user.username}</strong>!</p>
+                <h4>Welcome, {user.username}!</h4>
             ) : (
-                <p>You are not logged in.</p>
+                <h3>You are not logged in.</h3>
             )}
 
             {error && (
                 <p>{error}</p>
             )}
 
-            {!loading && (
+            {user && !loading && (
                 <div className={"home__trivia-question"}>
                     <h2>Question:</h2>
                     <h3>{decodeHtml(questions[count]?.question)}</h3>
@@ -102,9 +102,11 @@ const HomePage = () => {
                         </div>
                     )}
 
-                    <div>
-                        <p>{answer}</p>
-                    </div>
+                    {answer != null && (
+                        <div>
+                            <p>{answer}</p>
+                        </div>
+                    )}
 
                     <button onClick={handleNextQuestion}>Next Question</button>
                 </div>

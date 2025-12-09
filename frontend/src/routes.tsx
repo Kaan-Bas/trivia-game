@@ -8,9 +8,9 @@ const RoutesComponent = () => {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/stats" element={<StatsPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/stats" element={<StatsPage />} />
         </Routes>
     );
 };

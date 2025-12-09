@@ -2,10 +2,35 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-block-start: 2rem;
 
   &__links {
     display: flex;
     justify-content: space-around;
     gap: 2rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        color: #d9d9d9;
+      }
+    }
+  }
+
+  &__logout {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: #d9d9d9;
+    }
   }
 }
