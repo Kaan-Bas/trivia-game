@@ -8,6 +8,7 @@ const HomePage = () => {
     const user = stored ? JSON.parse(stored) as { username: string } : null;
 
     const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
+    const [answer, setAnswer] = useState<string | null>(null);
     const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -39,8 +40,25 @@ const HomePage = () => {
         }
     }
 
-    const handleClick = () => {
+    const handleTrue = () => {
+        if (questions[count].correct_answer == "True") {
+            setAnswer("Correct!")
+        } else {
+            setAnswer("Wrong")
+        }
+    };
+
+    const handleFalse = () => {
+        if (questions[count].correct_answer == "False") {
+            setAnswer("Correct!")
+        } else {
+            setAnswer("Wrong")
+        }
+    };
+
+    const handleNextQuestion = () => {
         setCount(prev => prev + 1);
+        setAnswer(null);
     };
 
     useEffect(() => {
@@ -55,8 +73,6 @@ const HomePage = () => {
 
     return (
         <main className={"home"}>
-            <h1>Trivia Game</h1>
-
             {user ? (
                 <p>Welcome, <strong>{user.username}</strong>!</p>
             ) : (
@@ -68,13 +84,22 @@ const HomePage = () => {
             )}
 
             {!loading && (
-                <div>
+                <div className={"home__trivia-question"}>
+                    <h2>Question:</h2>
                     <h3>{decodeHtml(questions[count]?.question)}</h3>
-                    <button onClick={handleClick}>Next question</button>
+
+                    {answer == null &&(
+                        <div className={"home__trivia-question--buttons"}>
+                            <button onClick={handleTrue}>True</button>
+                            <button onClick={handleFalse}>False</button>
+                        </div>
+                    )}
+
+                    <p>{answer}</p>
+
+                    <button onClick={handleNextQuestion}>Next Question</button>
                 </div>
             )}
-
-            <p>{count}</p>
         </main>
     );
 };
