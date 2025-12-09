@@ -1,3 +1,5 @@
+import type {UserStatsResponse} from "./types/user.ts";
+
 const API_BASE_URL =
     import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080';
 
@@ -13,14 +15,14 @@ export async function registerUser(
     password: string,
 ): Promise<UserResponse> {
     const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
     });
 
     if (!res.ok) {
         const text = await res.text();
-        throw new Error(text || 'Failed to register');
+        throw new Error(text || "Failed to register");
     }
 
     return res.json();
@@ -31,14 +33,36 @@ export async function loginUser(
     password: string,
 ): Promise<UserResponse> {
     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
     });
 
     if (!res.ok) {
         const text = await res.text();
-        throw new Error(text || 'Failed to login');
+        throw new Error(text || "Failed to login");
+    }
+
+    return res.json();
+}
+
+export async function updateUserStats(
+    username: string,
+    wasCorrect: boolean,
+): Promise<UserStatsResponse> {
+    const res = await fetch(`${API_BASE_URL}/api/stats/update`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username,
+            correctAnswers: wasCorrect ? 1 : 0,
+            totalQuestions: 1,
+        }),
+    });
+
+    if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Failed to update stats");
     }
 
     return res.json();

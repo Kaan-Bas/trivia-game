@@ -22,6 +22,12 @@ public class User {
 
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private int totalQuestionsAnswered = 0;
+
+    @Column(nullable = false)
+    private int totalCorrectAnswers = 0;
+
     @PrePersist
     public void prePersist() {
         if (createdAt == null) {
@@ -67,5 +73,21 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getTotalCorrectAnswers() {
+        return totalCorrectAnswers;
+    }
+
+    public void setTotalCorrectAnswers(int totalCorrectAnswers) {
+        this.totalCorrectAnswers = totalCorrectAnswers;
+    }
+
+    public int getTotalQuestionsAnswered() {
+        return totalQuestionsAnswered;
+    }
+
+    public void setTotalQuestionsAnswered(int totalQuestionsAnswered) {
+        this.totalQuestionsAnswered = totalQuestionsAnswered;
     }
 }

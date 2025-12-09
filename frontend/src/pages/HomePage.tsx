@@ -1,11 +1,12 @@
-import "../styles/home-page.scss"
-import {useEffect, useState} from "react";
-import type {TriviaQuestion, TriviaResponse} from "../types/trivia.ts";
-import {decodeHtml} from "../utils/decodeHtml.ts";
+import "../styles/home-page.scss";
+import { useEffect, useState } from "react";
+import type { TriviaQuestion, TriviaResponse } from "../types/trivia";
+import { decodeHtml } from "../utils/decodeHtml";
+import { updateUserStats } from "../api";
 
 const HomePage = () => {
-    const stored = localStorage.getItem('user');
-    const user = stored ? JSON.parse(stored) as { username: string } : null;
+    const stored = localStorage.getItem("user");
+    const user = stored ? (JSON.parse(stored) as { username: string }) : null;
 
     const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
     const [answer, setAnswer] = useState<string | null>(null);
@@ -16,8 +17,10 @@ const HomePage = () => {
     async function fetchQuestions() {
         try {
             setLoading(true);
+            setError(null);
+
             const res = await fetch(
-                "https://opentdb.com/api.php?amount=10&category=9&type=boolean"
+                "https://opentdb.com/api.php?amount=10&category=9&type=boolean",
             );
             const data = (await res.json()) as TriviaResponse;
 
@@ -32,27 +35,31 @@ const HomePage = () => {
 
             setQuestions(data.results);
             setCount(0);
+            setAnswer(null);
         } catch (err) {
             if (err instanceof Error) setError(err.message);
-            else setError("Unknown error fetching questions");
+            else setError("Unknown error fetching trivia questions");
         } finally {
             setLoading(false);
         }
     }
 
-    const handleTrue = () => {
-        if (questions[count].correct_answer == "True") {
-            setAnswer("Correct!")
-        } else {
-            setAnswer("Wrong")
-        }
-    };
+    const handleAnswer = async (selected: "True" | "False") => {
+        const current = questions[count];
+        if (!current) return;
 
-    const handleFalse = () => {
-        if (questions[count].correct_answer == "False") {
-            setAnswer("Correct!")
-        } else {
-            setAnswer("Wrong")
+        const isCorrect = current.correct_answer === selected;
+
+        setAnswer(isCorrect ? "Correct!" : "Wrong");
+
+        if (!user) {
+            return;
+        }
+
+        try {
+            await updateUserStats(user.username, isCorrect);
+        } catch (err) {
+            console.error("Failed to update stats", err);
         }
     };
 
@@ -88,10 +95,10 @@ const HomePage = () => {
                     <h2>Question:</h2>
                     <h3>{decodeHtml(questions[count]?.question)}</h3>
 
-                    {answer == null &&(
-                        <div className={"home__trivia-question--buttons"}>
-                            <button onClick={handleTrue}>True</button>
-                            <button onClick={handleFalse}>False</button>
+                    {answer == null && (
+                        <div className="home__trivia-question--buttons">
+                            <button onClick={() => handleAnswer("True")}>True</button>
+                            <button onClick={() => handleAnswer("False")}>False</button>
                         </div>
                     )}
 
@@ -105,4 +112,5 @@ const HomePage = () => {
         </main>
     );
 };
+
 export default HomePage;
