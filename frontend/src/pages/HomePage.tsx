@@ -95,7 +95,9 @@ const HomePage = () => {
                         </div>
                     )}
 
-                    <p>{answer}</p>
+                    <div>
+                        <p>{answer}</p>
+                    </div>
 
                     <button onClick={handleNextQuestion}>Next Question</button>
                 </div>
