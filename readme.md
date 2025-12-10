@@ -2,7 +2,7 @@
 
 A full-stack trivia application where users can register, log in, answer questions, and track their stats.
 
-### *Project is still in development, the core of the application is finished but the following features will be added to complete the project:
+#### *Project is still in development, the core of the application is finished but the following features will be added to complete the project:
 - Design improvement (current design is only minimal)
 - Option to choose different categories and difficulties for questions
 - Security & Authentication in back-end
