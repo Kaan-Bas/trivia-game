@@ -83,7 +83,7 @@ const HomePage = () => {
             {user ? (
                 <h4>Welcome, {user.username}!</h4>
             ) : (
-                <h3>You are not logged in.</h3>
+                <h1>Log in to get trivia questions</h1>
             )}
 
             {error && (
