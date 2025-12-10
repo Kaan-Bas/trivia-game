@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import type { TriviaQuestion, TriviaResponse } from "../types/trivia";
 import { decodeHtml } from "../utils/decodeHtml";
 import { updateUserStats } from "../api";
+import {useNavigate} from "react-router-dom";
 
 const HomePage = () => {
     const stored = localStorage.getItem("user");
@@ -13,6 +14,8 @@ const HomePage = () => {
     const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const navigate = useNavigate();
 
     async function fetchQuestions() {
         try {
@@ -69,6 +72,9 @@ const HomePage = () => {
     };
 
     useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
         fetchQuestions();
     }, []);
 

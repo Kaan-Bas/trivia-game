@@ -31,9 +31,11 @@ const NavComponent = () => {
             </div>
 
             <div className="nav__links">
-                <Link to="/">Home</Link>
                 {user && (
-                    <Link to="/stats">Stats</Link>
+                    <>
+                        <Link to="/">Home</Link>
+                        <Link to="/stats">Stats</Link>
+                    </>
                 )}
 
                 {!user && (
