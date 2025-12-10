@@ -32,7 +32,9 @@ const NavComponent = () => {
 
             <div className="nav__links">
                 <Link to="/">Home</Link>
-                <Link to="/stats">Stats</Link>
+                {user && (
+                    <Link to="/stats">Stats</Link>
+                )}
 
                 {!user && (
                     <>
