@@ -24,9 +24,10 @@
         width: 7.5rem;
         padding: .75rem;
         border-radius: .35rem;
-        background-color: #6edb6e;
+        background-color: #5ebd5e;
         color: #FFFFFF;
         border: none;
+        font-weight: bolder;
 
         &:hover {
           width: 9rem;
@@ -39,6 +40,8 @@
         background-color: #eb4034;
         color: #FFFFFF;
         border: none;
+        font-weight: bolder;
+
         &:hover {
           width: 9rem;
         }
