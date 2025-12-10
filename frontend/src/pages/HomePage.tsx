@@ -97,18 +97,16 @@ const HomePage = () => {
 
                     {answer == null && (
                         <div className="home__trivia-question--buttons">
-                            <button onClick={() => handleAnswer("True")}>True</button>
-                            <button onClick={() => handleAnswer("False")}>False</button>
+                            <button className={"home__trivia-question--buttons--true"} onClick={() => handleAnswer("True")}>True</button>
+                            <button className={"home__trivia-question--buttons--false"} onClick={() => handleAnswer("False")}>False</button>
                         </div>
                     )}
 
                     {answer != null && (
-                        <div>
-                            <p>{answer}</p>
-                        </div>
+                        <p className={"home__trivia-question--answer"}>{answer}</p>
                     )}
 
-                    <button onClick={handleNextQuestion}>Next Question</button>
+                    <button className={"home__trivia-question--next-question"} onClick={handleNextQuestion}>Next Question</button>
                 </div>
             )}
         </main>
