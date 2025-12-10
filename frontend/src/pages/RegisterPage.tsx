@@ -39,12 +39,12 @@ const RegisterPage = () => {
 
     return (
         <main className={"register"}>
-            <h1>Register</h1>
-
             <form
                 onSubmit={handleSubmit}
                 className={"register__form"}
             >
+                <h1>Register</h1>
+
                 <label className={"register_form--label"}>
                     <p>Username</p>
                     <input
@@ -80,6 +80,10 @@ const RegisterPage = () => {
                 <button type="submit" disabled={loading} className={"register__form--button"}>
                     {loading ? 'Registering...' : 'Register'}
                 </button>
+
+                <p style={{ marginTop: '1rem' }}>
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
             </form>
 
             {error && (
@@ -96,10 +100,6 @@ const RegisterPage = () => {
                     </button>
                 </p>
             )}
-
-            <p style={{ marginTop: '1rem' }}>
-                Already have an account? <Link to="/login">Login</Link>
-            </p>
         </main>
     );
 };

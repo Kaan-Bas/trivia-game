@@ -39,12 +39,12 @@ const LoginPage = () => {
 
     return (
         <main className={"login"}>
-            <h1>Login</h1>
-
             <form
                 onSubmit={handleSubmit}
                 className={"login__form"}
             >
+                <h1>Login</h1>
+
                 <label className={"login__form--label"}>
                     <p>Username</p>
                     <input
@@ -68,6 +68,10 @@ const LoginPage = () => {
                 <button type="submit" disabled={loading} className={"login__form--button"}>
                     {loading ? 'Logging in...' : 'Login'}
                 </button>
+
+                <p>
+                    Don&apos;t have an account? <Link to="/register">Register</Link>
+                </p>
             </form>
 
             {error && (
@@ -75,10 +79,6 @@ const LoginPage = () => {
                     {error}
                 </p>
             )}
-
-            <p>
-                Don&apos;t have an account? <Link to="/register">Register</Link>
-            </p>
         </main>
     );
 };
