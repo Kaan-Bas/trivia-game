@@ -41,7 +41,7 @@ const StatsPage = () => {
             )}
             {!loading && (
                 <div className={"stats__content"}>
-                    <h2>Statistics for user: {user?.username}</h2>
+                    <h2 className={"stats__content--title"}>Statistics for user: {user?.username}</h2>
 
                     <p>Total answered questions: {stats?.totalQuestionsAnswered}</p>
 
